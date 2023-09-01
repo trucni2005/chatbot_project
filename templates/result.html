@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            border: 1px solid #ccc;
+        }
+
+        th, td {
+            border: 1px solid #ccc;
+            padding: 8px;
+            text-align: left;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            box-sizing: border-box;
+        }
+    </style>
+    <title>Document Search Results</title>
+</head>
+<body>
+    <h1>Document Search Results</h1>
+    <form method="post">
+        <ul>
+            {% for match in matches %}
+                <li>
+                    {{ match|replace("___", "<input type='text' name='edited_matches[]'>")|safe }}
+                </li>
+            {% endfor %}
+        </ul>
+        <ul>
+            {% for table_data in tables_data %}
+                <h2>{{ table_names[loop.index0] }}</h2>
+                <table>
+                    {% for row_data in table_data %}
+                        <tr>
+                            {% for cell_data in row_data %}
+                                <td>{{ cell_data|safe }}</td>
+                            {% endfor %}
+                        </tr>
+                    {% endfor %}
+                </table>
+            {% endfor %}
+        </ul>
+        <button type="submit">Save Changes</button>
+    </form>
+</body>
+</html>

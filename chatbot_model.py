@@ -65,14 +65,16 @@ class ChatBotModel:
             response = "Chào bạn, bạn cần hỗ trợ gì ạ?"
 
         elif key == 0:
-            response = "Cảm ơn bạn đã sử dụng chatbot của chúng tôi. Nếu có bất kì câu hỏi nào khác, vui lòng liên hệ lại cho chúng tôi. Chúng tôi rất sẵn lòng hỗ trợ bạn"
+            response = "Cảm ơn bạn đã sử dụng chatbot của chúng tôi. Nếu có bất kỳ câu hỏi nào khác, vui lòng liên hệ lại cho chúng tôi. Chúng tôi rất sẵn lòng hỗ trợ bạn"
 
         elif key:
-            doc_path = f'bieumau/{key}.doc'
+            doc_path = f'bieumau/{key}.docx'
             if os.path.exists(doc_path):
-                return f"Tải về tệp .doc: <a href='/download_doc?msg={user_input}'>{key}.doc</a>"
+                return f"Tải về tệp .doc: <a href='/download_doc?msg={user_input}'>{key}.docx</a><br><br>Bạn có cần điền ngay bây giờ không? Vui lòng trả lời: 'Có' hoặc 'Không'."
 
         else:
             response = str(self.chatbot.get_response(user_input))
 
         return response
+
+
